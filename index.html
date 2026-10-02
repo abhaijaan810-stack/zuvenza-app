@@ -413,7 +413,7 @@ function validateMin(){
 function orderText(){
   const c=APP.cart, lines=[];
   if(APP.service==='grind'){
-    if(c.wheat>0) lines.push(`• गेहूँ पिसाई: ${c.wheat} KG × ₹3 = ${money(c.wheat*3)}`);
+    if(c.wheat>0) lines.push(`• गेहूँ पिसाई: ${c.wheat} KG × ₹2.5 = ${money(c.wheat*2.5)}`);
     if(c.gram>0) lines.push(`• चना / बेसन पिसाई: ${c.gram} KG × ₹8 = ${money(c.gram*8)}`);
     if(c.corn>0) lines.push(`• मक्का / ज्वार पिसाई: ${c.corn} KG × ₹6 = ${money(c.corn*6)}`);
   }else{
