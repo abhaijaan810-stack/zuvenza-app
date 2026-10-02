@@ -369,7 +369,7 @@ function calc(){
   const c=APP.cart||{};
   let material=0, delivery=0, label='पिसाई सेवा';
   if(APP.service==='grind'){
-    material=(Number(c.wheat)||0)*3+(Number(c.gram)||0)*8+(Number(c.corn)||0)*6;
+    material=(Number(c.wheat)||0)*2.5+(Number(c.gram)||0)*8+(Number(c.corn)||0)*6;
     delivery=(material>0)?25:0;
     label='घर से पिसाई सेवा';
   }else{
