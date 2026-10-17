@@ -471,6 +471,8 @@ async function sendOrder(){
     return;
   }
   const message=orderText();
+  const paid=document.getElementById('paidCheck');
+if(paid){paid.checked=false;updateProofState();}
   const directUrl=`https://wa.me/${WA}?text=${encodeURIComponent(message)}`;
   const waIntent=`intent://send?phone=${encodeURIComponent(WA)}&text=${encodeURIComponent(message)}#Intent;scheme=whatsapp;end`;
   let launched=false;
@@ -506,7 +508,21 @@ document.querySelectorAll('.product').forEach(card=>{
   card.querySelector('[data-action="plus"]').onclick=()=>{
     const cur=Number(APP.cart[key]||0); setQty(key,cur===0?min:cur+1);
   };
-  input.addEventListener('change',()=>setQty(key,input.value));
+  input.addEventListener('input',()=>{
+  const raw=input.value.trim();
+  const val=raw===''?0:Math.max(0,Math.floor(Number(raw)||0));
+
+  APP.cart[key]=val;
+
+  const minus=card.querySelector('[data-action="minus"]');
+  if(minus) minus.disabled=val<=0;
+
+  calc();
+});
+
+input.addEventListener('change',()=>{
+  setQty(key,input.value);
+});
   card.querySelector('[data-action="minus"]').disabled=(APP.cart[key]||0)<=0;
 });
 
